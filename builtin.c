@@ -15,14 +15,14 @@ int _cd(char **args, __attribute__((unused)) char *input)
 	{
 		if (chdir(_getenv("HOME")) != 0)
 		{
-			perror("shell:");
+			perror("shell");
 		}
 	}
 	else
 	{
 		if (chdir(args[1]) != 0)
 		{
-			perror("shell:");
+			perror("shell");
 		}
 	}
 	return (1);
@@ -51,14 +51,14 @@ int _help(__attribute__((unused)) char **args,
 }
 
 /**
- * _exit - exit the shell.
+ * _exit_shell - exit the shell.
  * @args: list of arguments passed from parsing.
  * @input: input line for free.
  *
  * Description: Exit the shell.
  * Return: 0 if successfull.
  */
-int _exit(__attribute__((unused)) char **args, char *input)
+int _exit_shell(__attribute__((unused)) char **args, char *input)
 {
 	int var;
 
@@ -69,7 +69,7 @@ int _exit(__attribute__((unused)) char **args, char *input)
 
 	if (var < 0)
 	{
-		perror("shell:");
+		perror("shell");
 		return (1);
 	}
 	else if (var == 0)
@@ -130,7 +130,7 @@ int _setenv(char *name, char *value)
 
 	if (value == NULL)
 	{
-		perror("shell:");
+		perror("shell");
 	}
 	tmp = _getenv(name);
 	if (tmp != NULL)

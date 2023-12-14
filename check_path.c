@@ -85,6 +85,6 @@ char **_check_path(char **args, int *flag)
 	free(dest_path);
 	free(tokens_path);
 	free(copy_line);
-	perror("shell:");
+	perror("shell");
 	return (NULL);
 }

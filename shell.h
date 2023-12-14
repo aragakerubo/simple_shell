@@ -22,7 +22,7 @@ int _launch(char **args);
 void sigint_handler(int sig);
 
 /* Function declarations (prototypes for for builtin shell commands */
-int _exit(char **args, char *input);
+int _exit_shell(char **args, char *input);
 int _cd(char **args, __attribute__((unused)) char *input);
 
 /**
@@ -46,6 +46,7 @@ int _setenv(char *name, char *value);
 
 /* Function declarations (prototypes) for auxiliary funtions */
 ssize_t _getline(char **b, size_t *bufsize, FILE *stream);
+ssize_t _getline_bufsize(size_t bufsize, size_t index, char *buffer);
 int _getc(void);
 
 char *_strtok(char *s, const char *delim);

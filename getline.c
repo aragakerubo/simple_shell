@@ -32,7 +32,7 @@ ssize_t _getline(char **line, size_t *n,
 		 __attribute__((unused)) FILE * stream)
 {
 	size_t bufsize = 1024, index = 0;
-	int j, c, f = 0;
+	int c, f = 0;
 	char *buffer;
 
 	if (*n == 0)
@@ -48,8 +48,10 @@ ssize_t _getline(char **line, size_t *n,
 		if (c == EOF || c == '\n')
 		{
 			*(buffer + index) = '\0';
-			(c == EOF) ? j = -1 : j = index + 1;
-			return (j);
+			if (c == EOF)
+				return (-1);
+			else
+				return (index + 1);
 		}
 		else if (c == ' ')
 		{
@@ -67,11 +69,24 @@ ssize_t _getline(char **line, size_t *n,
 			index++;
 		}
 		if (index >= bufsize)
-		{
-			bufsize += 1024;
-			buffer = _realloc(buffer, bufsize - 1024, bufsize);
-			if (alloc_error(buffer) == -1)
-				return (-1);
-		}
+			return (_getline_bufsize(bufsize, index, buffer));
 	}
+}
+
+/**
+ * _getline_bufsize - Read a line from stdin.
+ * @bufsize: Size of the buffer.
+ * @index: Index of the buffer.
+ * @buffer: Pointer to the buffer.
+ *
+ * Description: Read a line from stdin.
+ * Return: Number of characters read.
+ */
+ssize_t _getline_bufsize(size_t bufsize, size_t index, char *buffer)
+{
+	bufsize += 1024;
+	buffer = _realloc(buffer, bufsize - 1024, bufsize);
+	if (alloc_error(buffer) == -1)
+		return (-1);
+	return (index);
 }

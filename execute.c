@@ -8,7 +8,7 @@
 int (*builtin_func[])(char **args, char *input) = {
 	&_cd,
 	&_help,
-	&_exit,
+	&_exit_shell,
 	&_env,
 };
 
