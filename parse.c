@@ -16,7 +16,7 @@ char **_split_line(char *line)
 	tokens = malloc(bufsize * sizeof(char *));
 	if (!tokens)
 	{
-		perror("hsh: allocation error\n");
+		perror("shell: allocation error\n");
 		return (NULL);
 	}
 
